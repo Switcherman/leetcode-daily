@@ -10,9 +10,9 @@ class Solution {
         if (s == null || s.length() == 0) {
             return 0;
         }
-        Map<Character, Integer> map = new HashMap();
         int left = 0;
         int r = 0;
+        Map<Character, Integer> map = new HashMap<>();
         for (int i = 0; i < s.length(); i++) {
             Integer index = map.get(s.charAt(i));
             if (index != null) {
