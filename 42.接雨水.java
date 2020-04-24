@@ -6,33 +6,24 @@
 
 // @lc code=start
 class Solution {
-    public int trap(int[] height) {
-        if (height.length < 3) {
-            return 0;
-        }
-        int result = 0;
-        int i = 0;
-        while (i < height.length) {
-            int j = i + 1;
-            while (j < height.length && height[i] > height[j]) {
-                j++;
-            }
-            int temp = calShower(height, i, j);
-            result += temp;
-            i = j;
-        }
-        return result;
+   public int trap(int[] height) {
+    int sum = 0;
+    int max_left = 0;
+    int[] max_right = new int[height.length];
+    for (int i = height.length - 2; i >= 0; i--) {
+        max_right[i] = Math.max(max_right[i + 1], height[i + 1]);
     }
+    for (int i = 1; i < height.length - 1; i++) {
+        max_left = Math.max(max_left, height[i - 1]);
+        int min = Math.min(max_left, max_right[i]);
+        if (min > height[i]) {
+            sum = sum + (min - height[i]);
+        }
+    }
+    return sum;
+}
 
-    private int calShower(int[] nums, int i, int j) {
-        int s = nums[i] * (j - i - 1);
-        int sum = 0;
-        i = i + 1;
-        while (i < j) {
-            sum += nums[i++];
-        }
-        return s - sum;
-    }
+
 }
 // @lc code=end
 
