@@ -7,23 +7,17 @@
 // @lc code=start
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        if (nums.length <= 1) {
-            return null;
-        }
-        int[] result = new int[2];
         Map<Integer, Integer> map = new HashMap<>();
-        
+        int[] result = new int[2];
         for (int i = 0; i < nums.length; i++) {
             int gap = target - nums[i];
-            Integer index = map.get(gap);
-            if (index != null) {
+            if (map.get(gap) != null) {
                 result[0] = i;
-                result[1] = index;
+                result[1] = map.get(gap);
                 return result;
             }
             map.put(nums[i], i);
         }
-
         return null;
     }
     
